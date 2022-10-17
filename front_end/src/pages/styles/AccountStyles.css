@@ -3,8 +3,8 @@
 body {
   margin: 0;
   font-family: 'Lato', sans-serif;
-  background: grey;
-  background: linear-gradient(to right, #37292b, #064870);
+  /* background: grey; */
+  /* background: linear-gradient(to right, #37292b, #064870); */
 }
 
 .header {
@@ -43,16 +43,16 @@ body {
 margin: 0 auto;
   font-weight: 400;
   font-size: 4rem;
-  background: rgb(34,193,195);
-  background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
-  background-size: 100%;
-  background-repeat: repeat;
+  /* background: rgb(34,193,195); */
+  /* background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%); */
+  /* background-size: 100%; */
+  /* background-repeat: repeat; */
 
-  background-clip: text;
+  /* background-clip: text; */
 
-  -webkit-background-clip: text;
+  /* -webkit-background-clip: text; */
   -webkit-text-fill-color: transparent; 
-  -moz-background-clip: text;
+  /* -moz-background-clip: text; */
   -moz-text-fill-color: transparent;
 }
 
@@ -60,16 +60,16 @@ margin: 0 auto;
 	margin: 0 auto;
 	  font-weight: 400;
 	  font-size: 1.5rem;
-	  background: rgb(34,193,195);
-	  background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
-	  background-size: 100%;
-	  background-repeat: repeat;
+	  /* background: rgb(34,193,195); */
+	  /* background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%); */
+	  /* background-size: 100%; */
+	  /* background-repeat: repeat; */
 	
-	  background-clip: text;
+	  /* background-clip: text; */
 	
-	  -webkit-background-clip: text;
+	  /* -webkit-background-clip: text; */
 	  -webkit-text-fill-color: transparent; 
-	  -moz-background-clip: text;
+	  /* -moz-background-clip: text; */
 	  -moz-text-fill-color: transparent;
 	}
 
@@ -84,8 +84,8 @@ margin: 0 auto;
 	text-align: center;
 	width: 35vw;
 	cursor: pointer;
-	background: grey;
-    background: linear-gradient(to left, #37292b, #064870);
+	/* background: grey; */
+    /* background: linear-gradient(to left, #37292b, #064870); */
   }
 
 .btn-one {
@@ -127,7 +127,7 @@ margin: 0 auto;
 	height: 100%;
 	z-index: 1;
 	transition: all 0.3s;
-	background-color: rgba(255,255,255,0.1);
+	/* background-color: rgba(255,255,255,0.1); */
   }
   .btn-one:hover::after {
 	opacity: 0; 
