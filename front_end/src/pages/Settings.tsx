@@ -2,7 +2,7 @@ import Button from '@mui/material/Button'
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
 import Grid from '@mui/material/Grid'
-import Input from "@mui/material/Input"
+// import Input from "@mui/material/Input"
 import Paper from '@mui/material/Paper'
 import TextField from '@mui/material/TextField'
 import axios from 'axios'
@@ -13,6 +13,7 @@ import { UrlContext } from '../context/UrlContext'
 import { RerenderContext } from '../context/RerenderContext'
 import { UserContext } from '../context/UserContext'
 
+import './styles/SettingsStyles.css'
 
 const Settings: React.FC = () => {
 	const [name, setName] = useState('')
@@ -41,7 +42,8 @@ const Settings: React.FC = () => {
 		// event.preventDefault()
 		const formData = new FormData()
 		formData.append('file', selectedFile)
-		
+		console.log(selectedFile)
+
 		axios.post(baseUrl + 'users/me/profileImg', formData, {withCredentials: true, headers: {
 			'Content-Type': 'multipart/form-data'
 		} }).catch((error) => {
@@ -53,6 +55,7 @@ const Settings: React.FC = () => {
 		})
 		setRerender?.(!Boolean(rerender))
 		navigate("/account")
+		
 	}
 
 	const handleFileSelect = (event: any) => {
@@ -92,6 +95,38 @@ const Settings: React.FC = () => {
 		}
 	}
 
+	// drag state
+	const [dragActive, setDragActive] = useState(false);
+
+	// handle drag events
+	const handleDrag = function(e) {
+		e.preventDefault();
+		e.stopPropagation();
+		if ( !(
+			e.dataTransfer.types &&
+			( e.dataTransfer.types.indexOf ? e.dataTransfer.types.indexOf( "Files" ) !== -1 : e.dataTransfer.types.contains( "Files" ) )
+		) ) {
+			setDragActive(false);
+		}
+		if (e.type === "dragenter" || e.type === "dragover") {
+			setDragActive(true);
+		} else if (e.type === "dragleave") {
+			setDragActive(false);
+		}
+	}
+
+	// triggers when file is dropped
+	const handleDrop = function(e) {
+		e.preventDefault();
+		e.stopPropagation();
+		setDragActive(false);
+		if (e.dataTransfer.files.length !== 1)
+			return
+		if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+			setSelectedFile(e.dataTransfer.files[0])
+		}
+	}
+
 	return (
 		<div>
 			<Notification message={message} />
@@ -100,9 +135,11 @@ const Settings: React.FC = () => {
 					spacing={2}
 					direction="column"
 					justifyContent="center"
-					style={{minHeight: "80vh"}}
+					style={{minHeight: "80vh",
+						// background: "linear-gradient(to right, #37292b, #064870"
+					}}
 				>
-					<Paper elevation={2} sx={{padding: 5}}>
+					<Paper elevation={2} sx={{padding: 5}} style={{background: "linear-gradient(to left, #37292b, #064870"}}>
 						<form>
 							<Grid container direction="column" spacing={2}>
 								<Grid item>
@@ -120,8 +157,13 @@ const Settings: React.FC = () => {
 										Change username
 									</Button>
 								</Grid>
-								<Grid item>
-									<Input type="file" onChange={handleFileSelect} fullWidth />
+								<Grid item onDragEnter={handleDrag} onSubmit={(e) => e.preventDefault()}>
+								<label htmlFor="uploadBtn" id='drop-container' className={dragActive ? "drag-active" : "" }>
+									<span className="drop-title">Drop an image here</span>
+									or
+									<input type="file" onChange={handleFileSelect} id='uploadBtn' ></input>
+								</label>
+								{ dragActive && <div id="drag-file-element" onDragEnter={handleDrag} onDragLeave={handleDrag} onDragOver={handleDrag} onDrop={handleDrop}></div> }
 								</Grid>
 								<Grid item>
 									<Button fullWidth variant="contained" onClick={handleSubmit} >
