@@ -1,6 +1,5 @@
-import { Switch } from '@mui/material';
-import React, { useContext } from 'react'
-import { Navigate, useNavigate } from 'react-router-dom';
+import React from 'react'
+import { Navigate } from 'react-router-dom';
 import { GameContext } from '../context/GameContext';
 
 import './styles/styles.css'

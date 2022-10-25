@@ -8,7 +8,9 @@ import { GameContext } from "../context/GameContext"
 
 const SearchBar: React.FC = () => {
 	const [users, setUsers] = useState<any[]>([])
+	// eslint-disable-next-line
 	const [rerender, setRerender] = useState(false)
+	// eslint-disable-next-line
 	const [value, setValue] = useState('')
 	const baseUrl = useContext(UrlContext)
 	const gameSocket = useContext(GameContext)

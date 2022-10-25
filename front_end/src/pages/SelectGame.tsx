@@ -4,12 +4,9 @@ import Container from '@mui/material/Container'
 import Box from '@mui/material/Box'
 import ButtonBase from '@mui/material/ButtonBase'
 import {styled} from '@mui/material/styles'
-import DataTable from '../components/DataTable'
 import { useNavigate } from 'react-router-dom';
-import { setSelectionRange } from '@testing-library/user-event/dist/utils';
 import { GameContext } from '../context/GameContext';
 import Queue from '../components/Queue';
-import { UserContext } from '../context/UserContext';
 import axios from 'axios';
 import { UrlContext } from '../context/UrlContext';
 import Notification from '../components/Notification';
@@ -98,7 +95,6 @@ const SelectGame: React.FC = () => {
 	const [openQueue, setOpenQueue] = useState(false)
 	const [err, setErr] = useState<string | null>(null)
 	const navigate = useNavigate()
-	const {context, setContext} = useContext(UserContext)
 	const socket = useContext(GameContext)
 	const baseUrl = useContext(UrlContext)
 
@@ -118,7 +114,7 @@ const SelectGame: React.FC = () => {
 			setTimeout(() => setErr(null), 5000)
 			setOpenQueue(false)
 		})
-	}, [])
+	}, [navigate, socket])
 
 	useEffect(() => {
 		axios.get(baseUrl + `auth/logged_in`).then(() => {}).catch(() => {

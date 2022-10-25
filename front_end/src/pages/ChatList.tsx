@@ -21,6 +21,7 @@ const ChatList: React.FC = () => {
 	const [message, setMessage] = useState<string | null>(null)
 	const [rerender, setRerender] = useState(false)
 	const [userData, setUserData] = useState<any>(null)
+	// eslint-disable-next-line
 	const {context, setContext} = useContext(UserContext)
 	const navigate = useNavigate()
 
@@ -36,9 +37,16 @@ const ChatList: React.FC = () => {
 				console.log(error)
 			}
 		})
-	}, [rerender, baseUrl, navigate])
-	
-	setInterval(() => {setRerender(!rerender)}, 500)
+	}, [rerender, baseUrl, navigate, setContext])
+
+	// eslint-disable-next-line
+	useEffect(() => {
+		const interval = setInterval(() => {setRerender(!rerender)}, 500)
+
+		return (() => {
+			clearInterval(interval)
+		})
+	})
 
 	useEffect(() => {
 		axios.get(baseUrl + "users/me", {withCredentials: true}).then((response) => {
@@ -49,20 +57,21 @@ const ChatList: React.FC = () => {
 				navigate("/login")
 			}
 			else {
-				setMessage(error.response.message)
+				setMessage(error.response.data.message)
 				setTimeout(() => {
 					setMessage(null)
 				}, 5000)
 			}
 		})
-	}, [rerender, baseUrl, navigate])
+	}, [rerender, baseUrl, navigate, setContext])
 
 	const handleError = (error: any) => {
 		if (error?.response?.status === 401) {
 			navigate("/login")
 		}
 		else {
-			setMessage(error.response.message)
+			console.log(error)
+			setMessage(error.response.data.message)
 			setTimeout(() => {
 				setMessage(null)
 			}, 5000)
@@ -159,6 +168,9 @@ const ChatList: React.FC = () => {
 				<hr/>
 				</Fragment>
 			)
+		}
+		else {
+			return <></>
 		}
 	})
 

@@ -2,10 +2,6 @@ import React, { useContext } from 'react'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import Avatar from '@mui/material/Avatar'
-// import Button from "@mui/material/Button"
-// import Container from '@mui/material/Container'
-// import Grid from '@mui/material/Grid'
-// import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
 import { useNavigate } from 'react-router-dom'
 import { UserContext } from '../context/UserContext'
@@ -14,12 +10,13 @@ import { RerenderContext } from '../context/RerenderContext'
 import MatchHistory from '../components/MatchHistory'
 
 import './styles/AccountStyles.css'
-import { Typography } from '@mui/material'
 
 const Account: React.FC = () => {
 	const [user, setUser] = useState<any>(null)
+	// eslint-disable-next-line
 	const [avatar, setAvatar] = useState<any>(null)
 	const {context, setContext} = useContext(UserContext)
+	// eslint-disable-next-line
 	const {rerender, setRerender} = useContext(RerenderContext)
 	const baseUrl = useContext(UrlContext)
 
@@ -43,10 +40,11 @@ const Account: React.FC = () => {
 		})
 	}
 
-	useEffect(getName, [baseUrl, navigate])
+	useEffect(getName, [baseUrl, navigate, setContext])
+
 	useEffect(() => {
 		setAvatar(<Avatar src={baseUrl + `users/me/profileImg?${Date.now()}`} />)
-	}, [rerender, context])
+	}, [rerender, context, baseUrl])
 
 	//src={baseUrl + "users/me/profileImg"}
 	//navigate("/settings")

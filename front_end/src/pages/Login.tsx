@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import { useState } from 'react'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
@@ -30,7 +30,7 @@ const Login: React.FC = () => {
 	const baseUrl = useContext(UrlContext)
 
 	const [message, setMessage] = useState<string | null>(null)
-
+	// eslint-disable-next-line
 	const {context, setContext} = useContext(UserContext)
 
 	const navigate = useNavigate()

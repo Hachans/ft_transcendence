@@ -96,6 +96,10 @@ export class ChatService {
 			}
 		})
 
+		if (channelData.blocked.includes(user.id)) {
+			throw new ForbiddenException("You are banned motherfucker!")
+		}
+
 		if (!channelData) {
 			throw new ForbiddenException("This channel was deleted by an admin")
 		}

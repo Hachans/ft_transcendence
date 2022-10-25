@@ -193,12 +193,12 @@ export class GameService {
 		try {
 			let room = null
 			for (let i = 0; i < this.rooms.length; i++) {
-				if (player?.name === this.rooms[i].player1 && socket.rooms.includes(this.rooms[i].room)) {
+				if (player?.name === this.rooms[i].player1) {
 					this.rooms[i].winner = this.rooms[i].player2
 					room = this.rooms[i]
 					break ;
 				}
-				else if (player?.name === this.rooms[i].player2 && socket.rooms.includes(this.rooms[i].room)) {
+				else if (player?.name === this.rooms[i].player2) {
 					this.rooms[i].winner = this.rooms[i].player1
 					room = this.rooms[i]
 					break ;

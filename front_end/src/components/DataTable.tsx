@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import {DataGrid, GridRowsProp, GridColDef} from '@mui/x-data-grid'
+import {DataGrid, GridColDef} from '@mui/x-data-grid'
 import { UrlContext } from '../context/UrlContext'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'

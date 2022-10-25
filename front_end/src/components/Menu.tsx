@@ -63,7 +63,7 @@ const MenuBar: React.FC<MenuProps> = ({handleToggle}) => {
 	//this is stupid and i hate it but at least it works
 	useEffect(() => {
 		setAvatar(<Avatar src={baseUrl + `users/me/profileImg?${Date.now()}`} />)
-	}, [rerender, context])
+	}, [rerender, context, baseUrl])
 
 	useEffect(() => {
 		axios.get(baseUrl + 'users/me/friends', {withCredentials: true}).then((response) => {

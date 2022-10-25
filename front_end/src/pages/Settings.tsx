@@ -2,7 +2,6 @@ import Button from '@mui/material/Button'
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
 import Grid from '@mui/material/Grid'
-// import Input from "@mui/material/Input"
 import Paper from '@mui/material/Paper'
 import TextField from '@mui/material/TextField'
 import axios from 'axios'
@@ -12,9 +11,8 @@ import Notification from '../components/Notification'
 import { UrlContext } from '../context/UrlContext'
 import { RerenderContext } from '../context/RerenderContext'
 import { UserContext } from '../context/UserContext'
-
 import './styles/SettingsStyles.css'
-import { FormControl, FormLabel, Input, Typography } from '@mui/material'
+import FormLabel from '@mui/material/FormLabel'
 
 const Settings: React.FC = () => {
 	const [name, setName] = useState('')
@@ -26,6 +24,7 @@ const Settings: React.FC = () => {
 	const [selectedFile, setSelectedFile] = useState<any>(null)
 	const baseUrl = useContext(UrlContext)
 	const {rerender, setRerender} = useContext(RerenderContext)
+	// eslint-disable-next-line
 	const {context, setContext} = useContext(UserContext)
 	const navigate = useNavigate()
 
@@ -37,7 +36,7 @@ const Settings: React.FC = () => {
 				setTwoAuthOn(true)
 			}
 		})
-	}, [])
+	}, [baseUrl])
 
 	const handleSubmit = (event: any) => {
 		// event.preventDefault()
@@ -201,7 +200,7 @@ const Settings: React.FC = () => {
 								</Grid>}
 								{(qrDisplayed && !twoAuthOn) && <Grid item>
 									<Box display="flex" justifyContent="center" alignItems="center" flex={1}>
-										<img src={qrUrl} />
+										<img src={qrUrl} alt="QRCode" />
 									</Box>
 								</Grid>}
 								{(qrDisplayed && !twoAuthOn) && <Grid item>

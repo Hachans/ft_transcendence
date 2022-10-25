@@ -31,7 +31,9 @@ const Chat: React.FC = () => {
 	const scrollBottomRef = useRef<any>(null)
 	const socket = useContext(ChatContext)
 	const baseUrl = useContext(UrlContext)
+	// eslint-disable-next-line
 	const {context, setContext} = useContext(UserContext)
+	// eslint-disable-next-line
 	const {rerender, setRerender} = useContext(RerenderContext)
 	const channel = useParams()
 	const navigate = useNavigate()
@@ -47,7 +49,7 @@ const Chat: React.FC = () => {
 			}
 		})
 		console.log('rerenders')
-	}, [baseUrl, rerender])
+	}, [baseUrl, rerender, setContext, navigate])
 
 	useEffect(() => {
 		socket.on('message', ({data, room, user}: any) => {
@@ -95,7 +97,7 @@ const Chat: React.FC = () => {
 				console.log(error)
 			}
 		})
-	}, [baseUrl, channel, navigate, me])
+	}, [baseUrl, channel, navigate, me, setContext])
 
 	useEffect(() => {
 		scrollBottomRef.current?.scrollIntoView({behavior: "smooth"})

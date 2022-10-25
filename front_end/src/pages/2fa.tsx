@@ -13,6 +13,7 @@ import Notification from '../components/Notification'
 const TwoFactor: React.FC = () => {
 	const [code, setCode] = useState('')
 	const [message, setMessage] = useState<string | null>(null)
+	// eslint-disable-next-line
 	const {context, setContext} = useContext(UserContext)
 	const baseUrl = useContext(UrlContext)
 	const navigate = useNavigate()

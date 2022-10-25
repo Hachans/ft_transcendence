@@ -1,8 +1,6 @@
 import CircularProgress from "@mui/material/CircularProgress"
 import Dialog from "@mui/material/Dialog"
-import DialogContent from "@mui/material/DialogContent"
 import DialogTitle from "@mui/material/DialogTitle"
-import Typography from "@mui/material/Typography"
 import { useContext, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { GameContext } from "../context/GameContext"

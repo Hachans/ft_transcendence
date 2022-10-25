@@ -13,11 +13,10 @@ import TextField from "@mui/material/TextField"
 import Paper from "@mui/material/Paper"
 import SendIcon from "@mui/icons-material/Send"
 import { useContext, useEffect, useRef, useState } from "react"
-import { Icon, Typography } from "@mui/material"
+import { Typography } from "@mui/material"
 import { ChatContext } from "../context/ChatContext"
 import Notification from "../components/Notification"
 import { useNavigate, useParams } from "react-router-dom"
-import UserList from "../components/UserList"
 import { UrlContext } from "../context/UrlContext"
 import { Status } from "../enum/status"
 import CircleIcon from '@mui/icons-material/Circle';
@@ -38,6 +37,7 @@ const DmChat: React.FC = () => {
 	const scrollBottomRef = useRef<any>(null)
 	const socket = useContext(ChatContext)
 	const baseUrl = useContext(UrlContext)
+	// eslint-disable-next-line
 	const {context, setContext} = useContext(UserContext)
 	const channel = useParams()
 	const navigate = useNavigate()
@@ -56,7 +56,7 @@ const DmChat: React.FC = () => {
 					setError('')
 				}, 5000)
 		})
-	}, [baseUrl])
+	}, [baseUrl, channel.id, navigate, setContext])
 
 	useEffect(() => {
 		socket.on('message', ({data, room}: any) => {
@@ -90,7 +90,7 @@ const DmChat: React.FC = () => {
 			}
 			console.log(e)
 		})
-	}, [baseUrl, channel])
+	}, [baseUrl, channel, navigate, setContext])
 
 	useEffect(() => {
 		if (channelName) {
@@ -110,7 +110,7 @@ const DmChat: React.FC = () => {
 				}
 			})
 		}
-	}, [baseUrl, channelName])
+	}, [baseUrl, channelName, navigate, setContext])
 
 	useEffect(() => {
 		scrollBottomRef.current?.scrollIntoView({behavior: "smooth"})

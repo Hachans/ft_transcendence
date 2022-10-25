@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import {DataGrid, GridRowsProp, GridColDef} from '@mui/x-data-grid'
+import {DataGrid, GridColDef} from '@mui/x-data-grid'
 import { UrlContext } from '../context/UrlContext'
 import { UserContext } from '../context/UserContext'
 import { useNavigate, useParams } from 'react-router-dom'
@@ -19,6 +19,7 @@ const singleRow = (id, nameVS, date, status) => {
 const MatchHistoryUser = () => {
 	const [user, setUser] = useState<any>(null)
 	const [opponents, setOpponents] = useState<any>([])
+	// eslint-disable-next-line
 	const {context, setContext} = useContext(UserContext)
 	const baseUrl = useContext(UrlContext)
 	const navigate = useNavigate()
@@ -42,7 +43,6 @@ const MatchHistoryUser = () => {
 				console.log(error)
 			}
 		})
-		// getOpponent()
 	}
 
 	const getOpponent = () => {
@@ -64,8 +64,10 @@ const MatchHistoryUser = () => {
 		}
 	}
 	
-	useEffect(getName, [baseUrl, navigate])
-	useEffect(getOpponent, [baseUrl, navigate, user])
+	useEffect(getName, [baseUrl, navigate, name, setContext])
+
+	useEffect(getOpponent, [baseUrl, navigate, user, setContext])
+
 	if (user) {
 		for (let i = 0; i < opponents.length; i++) {
 			let name;
@@ -76,7 +78,7 @@ const MatchHistoryUser = () => {
 				}
 			}
 			if (user?.matchHistory[i]?.date)
-				rows.push(singleRow(rowsId++, name, new Date(user?.matchHistory[i]?.date).toLocaleString(), user?.matchHistory[i]?.winner == user?.id ? "victory" : "defeat"))
+				rows.push(singleRow(rowsId++, name, new Date(user?.matchHistory[i]?.date).toLocaleString(), user?.matchHistory[i]?.winner === user?.id ? "victory" : "defeat"))
 		}
 		if (rows.length > 1) {
 			rows.shift()

@@ -168,7 +168,6 @@ class Pong extends React.Component <any, any>{
         }, this.state.opponentSpeed);
 
 		document.addEventListener("mousemove", (event) => {
-			let mousex = event.clientX;
 			let mousey = event.clientY;
 			const movedPlayer = this.moveBoard(mousey);
 			this.setState({player: movedPlayer, pause: false})

@@ -5,7 +5,6 @@ import { useContext, useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { UrlContext } from "../context/UrlContext"
 import { UserContext } from "../context/UserContext"
-// import { Status } from "../enum/status"
 import MatchHistoryUser from "../components/MatchHistoryUser"
 import Notification from '../components/Notification'
 
@@ -13,6 +12,7 @@ const User: React.FC = () => {
 	const [user, setUser] = useState<any>(null)
 	const { name } = useParams()
 	const baseUrl = useContext(UrlContext)
+	// eslint-disable-next-line
 	const {context, setContext} = useContext(UserContext)
 	const navigate = useNavigate()
 	const [message, setMessage] = useState<string | null>(null)
@@ -44,7 +44,7 @@ const User: React.FC = () => {
 		}, 2000)
 
 		return () => clearTimeout(timeout)
-	}, [baseUrl, name, navigate, message])
+	}, [baseUrl, name, navigate, message, setContext])
 
 
 	// const getStatus = () => {
