@@ -41,7 +41,7 @@ const ChatList: React.FC = () => {
 
 	// eslint-disable-next-line
 	useEffect(() => {
-		const interval = setInterval(() => {setRerender(!rerender)}, 500)
+		const interval = setInterval(() => {setRerender(!rerender)}, 1000)
 
 		return (() => {
 			clearInterval(interval)
